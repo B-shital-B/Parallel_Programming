@@ -1,0 +1,16 @@
+#include<stdio.h>
+#include<omp.h>
+int main()
+{
+	omp_set_num_threads(4);
+        #pragma omp parallel
+	{
+		printf("Thread %d\n entered parallel region ",omp_get_thread_num());
+                   #pragma omp master
+		{
+			printf("Matsre thread %d\n intializing data",omp_get_thread_num());
+		}
+		printf("Thread %d\n continues work",omp_get_thread_num());
+	}
+	return 0;
+}
